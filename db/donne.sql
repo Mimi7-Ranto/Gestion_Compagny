@@ -84,10 +84,10 @@ INSERT INTO vol(depart, destination, date_depart, date_arrivee, id_company, etat
 
 
 -- Réservations mises à jour avec id_reservation pour correspondre aux billets
-INSERT INTO reservation(id_reservation, id_client, id_vol, date_reservation) VALUES
-('RS001', 'CL001', 'VO001', CURRENT_TIMESTAMP), 
-('RS002', 'CL002', 'VO001', CURRENT_TIMESTAMP), 
-('RS003', 'CL003', 'VO002', CURRENT_TIMESTAMP);
+INSERT INTO reservation(id_client, id_vol, date_reservation) VALUES
+('CL001', 'VO001', CURRENT_TIMESTAMP), 
+('CL002', 'VO001', CURRENT_TIMESTAMP), 
+('CL003', 'VO002', CURRENT_TIMESTAMP);
 
 
 
@@ -109,13 +109,13 @@ INSERT INTO escale(id_vol, id_aeroport, id_avion, ordre_escale, heure_depart, he
 
 -- VO003 : Antananarivo → Paris
 INSERT INTO escale(id_vol, id_aeroport, id_avion, ordre_escale, heure_depart, heure_arrivee) VALUES
-('VO003', 'AP001', 'AV004', 1, '2026-02-01 21:00', '2026-02-01 21:30'), -- départ Antananarivo
-('VO003', 'AP004', 'AV004', 2, '2026-02-02 05:30', '2026-02-02 06:00'); -- arrivée Paris
+('VO003', 'AP001', 'AV004', 1, '2026-02-01 21:00', '2026-02-01 21:30'), 
+('VO003', 'AP004', 'AV004', 2, '2026-02-02 05:30', '2026-02-02 06:00'); 
 
 -- VO004 : Paris → New York
 INSERT INTO escale(id_vol, id_aeroport, id_avion, ordre_escale, heure_depart, heure_arrivee) VALUES
-('VO004', 'AP004', 'AV004', 1, '2026-02-05 10:00', '2026-02-05 10:30'), -- départ Paris
-('VO004', 'AP005', 'AV004', 2, '2026-02-05 17:30', '2026-02-05 18:00'); -- arrivée New York
+('VO004', 'AP004', 'AV004', 1, '2026-02-05 10:00', '2026-02-05 10:30'), 
+('VO004', 'AP005', 'AV004', 2, '2026-02-05 17:30', '2026-02-05 18:00'); 
 
 -- VO005 : Antananarivo → London
 INSERT INTO escale(id_vol, id_aeroport, id_avion, ordre_escale, heure_depart, heure_arrivee) VALUES
