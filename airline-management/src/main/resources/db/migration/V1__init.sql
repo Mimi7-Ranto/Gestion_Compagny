@@ -228,6 +228,8 @@ CREATE TABLE escale (
     CONSTRAINT chk_ordre_positif CHECK (ordre_escale > 0)
 );
 
+
+
 -- =============================================
 -- 4. SÉQUENCES
 -- =============================================
