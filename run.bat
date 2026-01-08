@@ -1,29 +1,42 @@
 @echo off
 REM Script pour compiler et exécuter le projet Spring Boot sur Windows
 
-REM Vérifier Maven
+REM Vérifier si Maven est installé
 where mvn >nul 2>nul
-IF ERRORLEVEL 1 (
-    echo Maven n'est pas installé. Installez-le depuis https://maven.apache.org/download.html
-    exit /b
+IF %ERRORLEVEL% NEQ 0 (
+    echo Maven n'est pas installé. Installez-le et ajoutez-le au PATH.
+    exit /b 1
 )
 
-REM Compiler le projet
-echo Compilation du projet...
-mvn clean package -DskipTests
+REM Compiler tous les fichiers Java
+echo Compilation des fichiers Java...
+mvn clean compile -DskipTests
+IF %ERRORLEVEL% NEQ 0 (
+    echo Erreur de compilation
+    exit /b 1
+)
+
+REM Créer le package JAR
+echo Creation du JAR...
+mvn package -DskipTests
+IF %ERRORLEVEL% NEQ 0 (
+    echo Erreur lors de la creation du JAR
+    exit /b 1
+)
 
 REM Vérifier si le JAR existe
-set JAR_FILE=
 for %%f in (target\*.jar) do (
-    if NOT "%%f"=="%JAR_FILE%" set JAR_FILE=%%f
+    set "JAR_FILE=%%f"
+    REM Ignorer le fichier original généré par Spring Boot
+    echo %JAR_FILE% | findstr /i "original" >nul
+    IF %ERRORLEVEL% NEQ 0 (
+        goto runJar
+    )
 )
+echo JAR non trouve dans target\
+exit /b 1
 
-if "%JAR_FILE%"=="" (
-    echo JAR non trouvé dans target\
-    exit /b
-)
-
-REM Lancer le JAR
+:runJar
 echo Lancement du projet...
 java -jar "%JAR_FILE%"
 pause
