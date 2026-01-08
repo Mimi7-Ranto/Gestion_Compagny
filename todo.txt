@@ -10,10 +10,9 @@ Créer un repo GitHub : gestion_compagny
 JDK 17 
 PostgreSQL
 
- Créer la base de données :SQLCREATE DATABASE compagnie_aerienne_db;
+ Créer la base de données :SQLCREATE DATABASE company;
 
  2. Créer le projet Spring Boot
-
  Aller sur https://start.spring.io
  Configurer :
 Project : Maven
